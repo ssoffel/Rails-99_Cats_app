@@ -18,16 +18,16 @@ class CatRentalRequestsController < ApplicationController
 
   def approve
 
-    @rental_request ||= CatRentalRequest.includes(:cat).find(params[:id])
-    @rental_request.approve!
+    rental_request ||= CatRentalRequest.find(params[:id])
+    rental_request.approve!
 
     redirect_to cats_url
   end
 
   def deny
-    @rental_request ||= CatRentalRequest.includes(:cat).find_by(id: params[:id])
-    @rental_request.deny!
-    redirect_to cat_url(@rental_request.cat)
+    rental_request ||= CatRentalRequest.find_by(id: params[:id])
+    rental_request.deny!
+    redirect_to cat_url(rental_request.cat)
   end
 
   private

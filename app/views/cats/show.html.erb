@@ -26,8 +26,8 @@
     <td><%=req.end_date%></td>
     <td><%=req.status%></td>
   <% if req.status == 'PENDING' %>
-   <td><%= button_to 'Approve', approve_cat_rental_request_url(req) %></td>
-   <td><%= button_to 'Deny', deny_cat_rental_request_url(req) %></td>
+   <td><%= button_to'Approve', approve_cat_rental_request_url(req), method: :patch %></td>
+   <td><%= button_to 'Deny', deny_cat_rental_request_url(req), method: :patch %></td>
 
 
 
