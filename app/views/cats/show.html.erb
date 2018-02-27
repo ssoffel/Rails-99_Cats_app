@@ -1,0 +1,39 @@
+<h1><%= @cat.name %></h1>
+
+ <table>
+   <tr>
+     <td><strong>Attribute</td>
+     <td><strong>Value</td>
+
+   </tr>
+   <% [:birth_date, :color, :sex, :description].each do |attr_name| %>
+     <tr>
+       <td><%= attr_name.capitalize %>:</td>
+       <td><%= @cat.send(attr_name) %></td>
+     </tr>
+   <% end %>
+ </table>
+
+ <table>
+   <tr>
+     <th><strong>Start date</th>
+     <th><strong>End date</th>
+     <th><strong>Status</th>
+   </tr>
+  <% @cat.requests.order('start_date').each do |req| %>
+  <tr>
+    <td><%=req.start_date%></td>
+    <td><%=req.end_date%></td>
+    <td><%=req.status%></td>
+  <% if req.status == 'PENDING' %>
+   <td><%= button_to 'Approve', approve_cat_rental_request_url(req) %></td>
+   <td><%= button_to 'Deny', deny_cat_rental_request_url(req) %></td>
+
+
+
+  <% end %>
+
+  </tr>
+  <% end %>
+  <br>
+ </table>
